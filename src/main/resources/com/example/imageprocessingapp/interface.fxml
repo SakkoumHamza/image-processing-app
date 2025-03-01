@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<?import java.net.URL?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.imageprocessingapp.Controller" styleClass="border-pane">
+
+    <!-- Affichage des images -->
+    <center>
+        <HBox spacing="20" alignment="CENTER" style="-fx-padding: 15;">
+            <VBox alignment="CENTER" spacing="5">
+                <Label text="Image Originale" style="-fx-font-weight: bold"/>
+                <ImageView fx:id="originalImageView" fitWidth="400.0" fitHeight="300.0" preserveRatio="true" 
+                    style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);"/>
+            </VBox>
+            <VBox alignment="CENTER" spacing="5">
+                <Label text="Image Traitée" style="-fx-font-weight: bold"/>
+                <ImageView fx:id="processedImageView" fitWidth="400" fitHeight="300" preserveRatio="true"
+                    style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);"/>
+            </VBox>
+        </HBox>
+    </center>
+
+    <!-- Panneau latéral avec boutons -->
+    <right>
+        <VBox spacing="10" alignment="TOP_CENTER" style="-fx-padding: 15; -fx-background-color: #f4f4f4;">
+            <HBox spacing="10" alignment="CENTER">
+                <Button fx:id="openButton" text="Ouvrir" onAction="#onOpenButtonClick" 
+                    styleClass="action-button"/>
+                <Button fx:id="saveButton" text="Enregistrer" onAction="#onSaveButtonClick" 
+                    styleClass="action-button"/>
+                <Button fx:id="quitButton" text="Quitter" onAction="#onQuitButtonClick" 
+                    styleClass="action-button"/>
+            </HBox>
+            <!-- Filtres de Fourier -->
+            <TitledPane text="Filtres de Fourier" expanded="false" styleClass="titled-pane">
+                <VBox spacing="5">
+                    <Button fx:id="lowIdealButton" text="Passe-Bas Idéal" onAction="#onLowIdealButtonClick"
+                        styleClass="filter-button"/>
+                    <Button fx:id="highIdealButton" text="Passe-Haut Idéal" onAction="#onHighIdealButtonClick"
+                        styleClass="filter-button"/>
+                    <Button fx:id="lowButterworthButton" text="Passe-Bas Butterworth" onAction="#onLowButterworthButtonClick"
+                        styleClass="filter-button"/>
+                    <Button fx:id="highButterworthButton" text="Passe-Haut Butterworth" onAction="#onHighButterworthButtonClick"
+                        styleClass="filter-button"/>
+                </VBox>
+            </TitledPane>
+            
+            <!-- Filtres Passe-Haut -->
+            <TitledPane text="Filtres Passe-Haut" expanded="false">
+                <VBox spacing="5">
+                    <Button fx:id="laplacianButton" text="Laplacien" onAction="#onLaplacienButtonClick" styleClass="filter-button" />
+                    <Button fx:id="sobelButton" text="Sobel" onAction="#onSobelButtonClick" styleClass="filter-button"/>
+                    <Button fx:id="gradientButton" text="Gradient" onAction="#onGradientButtonClick" styleClass="filter-button"/>
+                    <Button fx:id="prewittButton" text="Prewitt" onAction="#onPrewittButtonClick" styleClass="filter-button" />
+                    <Button fx:id="robertsButton" text="Roberts" onAction="#onRobertsButtonClick" styleClass="filter-button"/>
+                </VBox>
+            </TitledPane>
+
+            <!-- Filtres Passe-Bas -->
+            <TitledPane text="Filtres Passe-Bas" expanded="false">
+                <VBox spacing="5">
+                    <Button fx:id="mean3Button" text="Moyenneur 3x3" onAction="#onMoyenneur33ButtonClick" styleClass="filter-button"/>
+                    <Button fx:id="mean5Button" text="Moyenneur 5x5" onAction="#onMoyenneur55ButtonClick" styleClass="filter-button"/>
+                    <Button fx:id="gaussian3Button" text="Gaussien 3x3" onAction="#onGaussien33ButtonClick" styleClass="filter-button"/>
+                    <Button fx:id="gaussian5Button" text="Gaussien 5x5" onAction="#onGaussien55ButtonClick" styleClass="filter-button"/>
+                    <Button fx:id="medianButton" text="Médiane" onAction="#onMedianeButtonClick" styleClass="filter-button"/>
+                </VBox>
+            </TitledPane>
+
+            <!-- Transformations -->
+            <TitledPane text="Transformations" expanded="false">
+                <VBox spacing="5">
+                    <Button fx:id="inversionButton" text="Inversion" styleClass="filter-button" />
+                    <Button fx:id="binarizationButton" text="Binarisation" onAction="#onBinarisationButtonClick" styleClass="filter-button"/>
+                    <Button fx:id="contrastButton" text="Contraste" onAction="#onContrasteButtonClick" styleClass="filter-button"/>
+                    <Button fx:id="divisionButton" text="Division" onAction="#onDivisionButtonClick" styleClass="filter-button"/>
+                    <Button fx:id="grayscaleButton" text="Niveau de gris" onAction="#onNvGrayButtonClick" styleClass="filter-button" />
+                    <Button fx:id="histogramButton" text="Histogramme" onAction="#onHistogramButtonClick" styleClass="filter-button"/>
+                </VBox>
+            </TitledPane>
+        </VBox>
+    </right>
+    
+     <stylesheets>
+        <URL value="@styles.css"/>
+    </stylesheets>
+    
+</BorderPane>
+
